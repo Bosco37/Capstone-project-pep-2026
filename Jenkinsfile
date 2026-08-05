@@ -6,12 +6,11 @@ pipeline {
             steps {
                 echo 'Installing lightweight Docker CLI...'
                 sh '''
-                if ! command -v docker &> /dev/null; then
-                    curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-24.0.9.tgz
-                    tar xzvf docker-24.0.9.tgz
-                    mv docker/docker /usr/bin/
-                    rm -rf docker docker-24.0.9.tgz
-                fi
+                rm -f /usr/bin/docker || true
+                curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-27.3.1.tgz
+                tar xzvf docker-27.3.1.tgz
+                mv docker/docker /usr/bin/
+                rm -rf docker docker-27.3.1.tgz
                 '''
             }
         }
